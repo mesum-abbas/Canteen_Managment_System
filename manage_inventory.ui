@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>manage_inventory</class>
+ <widget class="QDialog" name="manage_inventory">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>10</y>
+     <width>401</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:26pt; font-weight:700; color:#2f2f2f;&quot;&gt;MANAGE INVENTORY&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>110</y>
+     <width>751</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>180</y>
+     <width>411</width>
+     <height>281</height>
+    </rect>
+   </property>
+   <property name="rowCount">
+    <number>8</number>
+   </property>
+   <property name="columnCount">
+    <number>7</number>
+   </property>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <row/>
+   <column>
+    <property name="text">
+     <string>ITEMS</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>STOCK</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>PRICE</string>
+    </property>
+   </column>
+   <column/>
+   <column/>
+   <column/>
+   <column/>
+   <item row="0" column="0">
+    <property name="text">
+     <string>PEPSI</string>
+    </property>
+   </item>
+   <item row="0" column="1">
+    <property name="text">
+     <string>2O</string>
+    </property>
+   </item>
+   <item row="0" column="2">
+    <property name="text">
+     <string>150</string>
+    </property>
+   </item>
+   <item row="1" column="0">
+    <property name="text">
+     <string>COLA</string>
+    </property>
+   </item>
+   <item row="1" column="1">
+    <property name="text">
+     <string>60</string>
+    </property>
+   </item>
+   <item row="1" column="2">
+    <property name="text">
+     <string>150</string>
+    </property>
+   </item>
+   <item row="2" column="0">
+    <property name="text">
+     <string>BIRYANI</string>
+    </property>
+   </item>
+   <item row="2" column="1">
+    <property name="text">
+     <string>10</string>
+    </property>
+   </item>
+   <item row="2" column="2">
+    <property name="text">
+     <string>200</string>
+    </property>
+   </item>
+   <item row="3" column="0">
+    <property name="text">
+     <string>BURGER</string>
+    </property>
+   </item>
+   <item row="3" column="1">
+    <property name="text">
+     <string>8</string>
+    </property>
+   </item>
+   <item row="3" column="2">
+    <property name="text">
+     <string>200</string>
+    </property>
+   </item>
+   <item row="4" column="0">
+    <property name="text">
+     <string>ROLL</string>
+    </property>
+   </item>
+   <item row="4" column="1">
+    <property name="text">
+     <string>6</string>
+    </property>
+   </item>
+   <item row="4" column="2">
+    <property name="text">
+     <string>180</string>
+    </property>
+   </item>
+   <item row="5" column="0">
+    <property name="text">
+     <string>JUICE</string>
+    </property>
+   </item>
+   <item row="5" column="1">
+    <property name="text">
+     <string>34</string>
+    </property>
+   </item>
+   <item row="5" column="2">
+    <property name="text">
+     <string>180</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>550</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ADD ITEM </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>630</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>EXIT</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>550</y>
+     <width>191</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>UPDATE </string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
