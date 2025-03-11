@@ -11,15 +11,14 @@ manage_inventory::manage_inventory(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Set up table headers (Assuming 2 columns: Item Name, Price)
+
     ui->tableWidget->setColumnCount(2);
     QStringList headers = {"Item Name", "Price"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
 
-    // Initially, disable editing
+
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    // Connect cell activation to the slot function
     connect(ui->tableWidget, &QTableWidget::cellActivated, this, &manage_inventory::on_tableWidget_cellActivated);
 }
 
@@ -28,7 +27,6 @@ manage_inventory::~manage_inventory()
     delete ui;
 }
 
-// Add Item - Opens a dialog to enter item details and adds them dynamically
 void manage_inventory::on_pushButton_clicked()
 {
     bool ok;
@@ -38,7 +36,7 @@ void manage_inventory::on_pushButton_clicked()
     QString itemPrice = QInputDialog::getText(this, "Add Item", "Enter item price:", QLineEdit::Normal, "", &ok);
     if (!ok || itemPrice.isEmpty()) return;
 
-    // Check for an empty row first
+
     int rowCount = ui->tableWidget->rowCount();
     int emptyRow = -1;
 
@@ -49,7 +47,7 @@ void manage_inventory::on_pushButton_clicked()
         }
     }
 
-    // If there's an empty row, use it; otherwise, add a new row
+
     int row = (emptyRow == -1) ? rowCount : emptyRow;
     if (emptyRow == -1) {
         ui->tableWidget->insertRow(row);
@@ -61,23 +59,19 @@ void manage_inventory::on_pushButton_clicked()
     QMessageBox::information(this, "Success", "Item added successfully!");
 }
 
-// Open Update Window - Allows updating and deleting items
 void manage_inventory::on_pushButton_3_clicked()
 {
     QDialog updateDialog(this);
     updateDialog.setWindowTitle("Update Items");
     updateDialog.resize(450, 350);
 
-    // Layout for the update dialog
     QVBoxLayout *layout = new QVBoxLayout(&updateDialog);
 
-    // Create a new table widget inside the update window
     QTableWidget *updateTable = new QTableWidget(&updateDialog);
     updateTable->setColumnCount(2);
     updateTable->setHorizontalHeaderLabels({"Item Name", "Price"});
     updateTable->setEditTriggers(QAbstractItemView::AllEditTriggers);
 
-    // Copy existing items into the update table
     int rows = ui->tableWidget->rowCount();
     updateTable->setRowCount(rows);
     for (int i = 0; i < rows; i++) {
@@ -88,7 +82,6 @@ void manage_inventory::on_pushButton_3_clicked()
         }
     }
 
-    // Button to delete selected row
     QPushButton *deleteButton = new QPushButton("Delete Selected Row", &updateDialog);
     QObject::connect(deleteButton, &QPushButton::clicked, [&]() {
         int selectedRow = updateTable->currentRow();
@@ -114,17 +107,14 @@ void manage_inventory::on_pushButton_3_clicked()
         updateDialog.accept();
     });
 
-    // Add widgets to layout
     layout->addWidget(updateTable);
     layout->addWidget(deleteButton);
     layout->addWidget(saveButton);
     updateDialog.setLayout(layout);
 
-    // Show the update window
     updateDialog.exec();
 }
 
-// Handle table cell activation event
 void manage_inventory::on_tableWidget_cellActivated(int row, int column)
 {
     if (ui->tableWidget->item(row, column)) {
