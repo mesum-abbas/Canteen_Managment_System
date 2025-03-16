@@ -30,4 +30,4 @@ private:
 
 };
 
-#endif // MANAGE_INVENTORY_H
+#endif

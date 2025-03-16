@@ -47,4 +47,3 @@ void admin_dash::on_pushButton_6_clicked()
 {
     ptrlogout->show();
 }
-

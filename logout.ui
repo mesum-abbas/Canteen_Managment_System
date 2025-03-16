@@ -39,7 +39,7 @@
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:700;&quot;&gt;ARE YOU SURE YOU WANT TO LOGOUT ?&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="yesButton">
    <property name="geometry">
     <rect>
      <x>70</x>
@@ -52,7 +52,7 @@
     <string>YES</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="noButton">
    <property name="geometry">
     <rect>
      <x>240</x>

@@ -19,4 +19,4 @@ private:
     Ui::stock_alert *ui;
 };
 
-#endif // STOCK_ALERT_H
+#endif // STOCK
