@@ -2,6 +2,9 @@
 #define MANAGE_INVENTORY_H
 
 #include <QDialog>
+#include <QComboBox>
+#include <QLabel>
+#include <QPushButton>
 
 namespace Ui {
 class manage_inventory;
@@ -16,18 +19,20 @@ public:
     ~manage_inventory();
 
 private slots:
-    void on_tableWidget_cellActivated(int row, int column);
-
     void on_pushButton_clicked();
     void on_pushButton_3_clicked();
+    void on_tableWidget_cellActivated(int row, int column);
+    void applyFilter();
 
-
+protected:
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     Ui::manage_inventory *ui;
-    bool addingItem;
-    bool updatingItem;
-
+    QComboBox *filterComboBox;
+    QLabel *filterLabel;
+    QPushButton *filterButton;
+    QLabel *titleLabel;
 };
 
-#endif
+#endif // MANAGE_INVENTORY_H
