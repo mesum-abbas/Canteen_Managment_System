@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include"admin_authentication.h"
+#include"user_authentication.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,9 +22,12 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     admin_authentication *ptradminauthentication;
+    user_authentication *ptruserauthentication;
 
 };
 #endif // MAINWINDOW_H

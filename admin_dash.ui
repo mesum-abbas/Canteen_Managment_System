@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(46, 46, 46);</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -21,6 +24,11 @@
      <width>441</width>
      <height>71</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+color: rgb(255, 255, 255);
+</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:28pt; font-weight:700; color:#242424;&quot;&gt;ADMIN DASHBOARD&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -35,6 +43,12 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 229, 255);
+color: rgb(46, 46, 46);</string>
+   </property>
    <property name="text">
     <string>MANAGE INVENTORY</string>
    </property>
@@ -47,6 +61,13 @@
      <width>201</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 229, 255);
+color: rgb(46, 46, 46);
+</string>
    </property>
    <property name="text">
     <string>GENERATE REPORT</string>
@@ -61,6 +82,12 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 229, 255);
+color: rgb(46, 46, 46);</string>
+   </property>
    <property name="text">
     <string>STOCK ALERT</string>
    </property>
@@ -73,6 +100,12 @@
      <width>201</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 229, 255);
+color: rgb(46, 46, 46);</string>
    </property>
    <property name="text">
     <string>LOG OUT </string>

@@ -17,7 +17,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     manage_inventory.cpp \
-    stock_alert.cpp
+    stock_alert.cpp \
+    user.cpp \
+    user_authentication.cpp
 
 HEADERS += \
     add_update.h \
@@ -27,7 +29,9 @@ HEADERS += \
     logout.h \
     mainwindow.h \
     manage_inventory.h \
-    stock_alert.h
+    stock_alert.h \
+    user.h \
+    user_authentication.h
 
 FORMS += \
     add_update.ui \
@@ -37,7 +41,9 @@ FORMS += \
     logout.ui \
     mainwindow.ui \
     manage_inventory.ui \
-    stock_alert.ui
+    stock_alert.ui \
+    user.ui \
+    user_authentication.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

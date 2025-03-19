@@ -19,6 +19,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(46, 46, 46);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="maximumSize">
     <size>
@@ -36,7 +39,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: rgb(245, 245, 220);</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Shape::StyledPanel</enum>
@@ -55,8 +58,18 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <family>Segoe UI</family>
+       <pointsize>18</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 18pt &quot;Segoe UI&quot;;
+border-color: rgb(15, 15, 15);
+
+background-color: rgb(0, 229, 255);
+color: rgb(46, 46, 46);</string>
      </property>
      <property name="text">
       <string>ADMIN</string>
@@ -73,8 +86,17 @@
      </property>
      <property name="font">
       <font>
-       <pointsize>16</pointsize>
+       <family>Segoe UI</family>
+       <pointsize>18</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border-color: rgb(15, 15, 15);
+font: 18pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 229, 255);
+color: rgb(46, 46, 46);</string>
      </property>
      <property name="text">
       <string>CASHIER</string>

@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(46, 46, 46);</string>
+  </property>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -48,6 +51,12 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 229, 255);
+color: rgb(46, 46, 46);</string>
+   </property>
    <property name="text">
     <string>YES</string>
    </property>
@@ -60,6 +69,12 @@
      <width>131</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(0, 229, 255);
+color: rgb(46, 46, 46);</string>
    </property>
    <property name="text">
     <string>NO</string>
