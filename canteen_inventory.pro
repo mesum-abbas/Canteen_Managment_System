@@ -17,7 +17,6 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     manage_inventory.cpp \
-    stock_alert.cpp \
     user.cpp \
     user_authentication.cpp
 
@@ -29,7 +28,6 @@ HEADERS += \
     logout.h \
     mainwindow.h \
     manage_inventory.h \
-    stock_alert.h \
     user.h \
     user_authentication.h
 
@@ -41,7 +39,6 @@ FORMS += \
     logout.ui \
     mainwindow.ui \
     manage_inventory.ui \
-    stock_alert.ui \
     user.ui \
     user_authentication.ui
 

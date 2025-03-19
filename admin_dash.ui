@@ -73,30 +73,11 @@ color: rgb(46, 46, 46);
     <string>GENERATE REPORT</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_5">
-   <property name="geometry">
-    <rect>
-     <x>110</x>
-     <y>420</y>
-     <width>201</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(0, 229, 255);
-color: rgb(46, 46, 46);</string>
-   </property>
-   <property name="text">
-    <string>STOCK ALERT</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton_6">
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>520</y>
+     <y>420</y>
      <width>201</width>
      <height>51</height>
     </rect>

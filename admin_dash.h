@@ -4,7 +4,7 @@
 #include <QDialog>
 #include"manage_inventory.h"
 #include"gen_report.h"
-#include"stock_alert.h"
+
 #include"logout.h"
 
 namespace Ui {
@@ -32,7 +32,7 @@ private:
     Ui::admin_dash *ui;
     manage_inventory  *ptrmanageinventory;
     gen_report  *ptrgeneratereport;
-    stock_alert  *ptrstockalert;
+
     logout *ptrlogout;
 
 };

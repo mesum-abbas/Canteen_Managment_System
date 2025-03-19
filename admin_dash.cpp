@@ -8,7 +8,7 @@ admin_dash::admin_dash(QWidget *parent)
     ui->setupUi(this);
     ptrmanageinventory = new manage_inventory();
     ptrgeneratereport = new gen_report();
-    ptrstockalert = new stock_alert();
+
     ptrlogout = new logout();
 
 }
@@ -18,7 +18,7 @@ admin_dash::~admin_dash()
     delete ui;
     delete ptrmanageinventory;
     delete ptrgeneratereport;
-    delete ptrstockalert;
+
     delete ptrlogout;
 }
 
@@ -37,10 +37,6 @@ void admin_dash::on_pushButton_4_clicked()
 }
 
 
-void admin_dash::on_pushButton_5_clicked()
-{
-    ptrstockalert->show();
-}
 
 
 void admin_dash::on_pushButton_6_clicked()

@@ -8,13 +8,15 @@
 #include <QComboBox>
 #include <QLabel>
 #include <QFont>
+#include <QTimer>
+#include <QHeaderView>
 
 manage_inventory::manage_inventory(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::manage_inventory)
+    , blinkState(false)
 {
     ui->setupUi(this);
-
 
     this->resize(800, 600);
     ui->tableWidget->setGeometry(20, 70, width() * 0.85, height() * 0.75);
@@ -24,15 +26,18 @@ manage_inventory::manage_inventory(QWidget *parent)
     ui->tableWidget->setHorizontalHeaderLabels(headers);
 
 
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Interactive);
+    ui->tableWidget->setColumnWidth(2, 200);
+
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     titleLabel = new QLabel("Manage Inventory", this);
     titleLabel->setGeometry(20, 20, 120, 25);
     QFont titleFont = titleLabel->font();
     titleFont.setBold(true);
     titleLabel->setFont(titleFont);
-
 
     filterLabel = new QLabel("Sort by:", this);
     filterLabel->setGeometry(150, 20, 50, 25);
@@ -48,8 +53,11 @@ manage_inventory::manage_inventory(QWidget *parent)
     filterButton->setGeometry(415, 20, 100, 25);
     connect(filterButton, &QPushButton::clicked, this, &manage_inventory::applyFilter);
 
-
     connect(ui->tableWidget, &QTableWidget::cellActivated, this, &manage_inventory::on_tableWidget_cellActivated);
+
+    blinkTimer = new QTimer(this);
+    connect(blinkTimer, &QTimer::timeout, this, &manage_inventory::updateBlinkEffect);
+    blinkTimer->start(1000);
 }
 
 manage_inventory::~manage_inventory()
@@ -59,6 +67,57 @@ manage_inventory::~manage_inventory()
     delete filterComboBox;
     delete filterButton;
     delete titleLabel;
+
+
+    if (blinkTimer) {
+        blinkTimer->stop();
+        delete blinkTimer;
+    }
+}
+
+void manage_inventory::updateBlinkEffect()
+{
+
+    blinkState = !blinkState;
+
+
+    for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
+        QTableWidgetItem* stockItem = ui->tableWidget->item(row, 2); // Stock column
+
+        if (stockItem) {
+            bool ok;
+            int stock = stockItem->text().toInt(&ok);
+
+            if (ok && stock < 10) {
+
+                for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
+                    QTableWidgetItem* item = ui->tableWidget->item(row, col);
+                    if (item) {
+                        if (blinkState) {
+
+                            QColor lightRed(255, 0, 0, 100);
+                            item->setBackground(lightRed);
+                            item->setForeground(Qt::black);
+
+
+                            if (col == 2) {
+                                item->setText(QString::number(stock) + " - Low stock please update");
+                            }
+                        } else {
+
+                            item->setBackground(Qt::white);
+                            item->setForeground(Qt::black);
+
+
+                            if (col == 2) {
+                                item->setText(QString::number(stock));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 void manage_inventory::on_pushButton_clicked()
@@ -71,7 +130,7 @@ void manage_inventory::on_pushButton_clicked()
     if (!ok || itemPrice.isEmpty()) return;
 
     QString itemStock = QInputDialog::getText(this, "Add Item", "Enter item stock:", QLineEdit::Normal, "15", &ok);
-    if (!ok) return; // Allow empty stock which will default to 15
+    if (!ok) return;
     if (itemStock.isEmpty()) itemStock = "15";
 
     int rowCount = ui->tableWidget->rowCount();
@@ -109,12 +168,23 @@ void manage_inventory::on_pushButton_3_clicked()
     updateTable->setHorizontalHeaderLabels({"Item Name", "Price", "Stock"});
     updateTable->setEditTriggers(QAbstractItemView::AllEditTriggers);
 
+
+    updateTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    updateTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Interactive);
+    updateTable->setColumnWidth(2, 200); // Set a good width for the stock column
+
     int rows = ui->tableWidget->rowCount();
     updateTable->setRowCount(rows);
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < 3; j++) {
             if (ui->tableWidget->item(i, j)) {
-                updateTable->setItem(i, j, new QTableWidgetItem(ui->tableWidget->item(i, j)->text()));
+                QString cellText = ui->tableWidget->item(i, j)->text();
+
+                if (j == 2 && cellText.contains(" - Low stock please update")) {
+                    cellText = cellText.split(" - ").first();
+                }
+
+                updateTable->setItem(i, j, new QTableWidgetItem(cellText));
             } else if (j == 2) {
                 updateTable->setItem(i, j, new QTableWidgetItem("15"));
             }
@@ -130,7 +200,6 @@ void manage_inventory::on_pushButton_3_clicked()
             QMessageBox::warning(&updateDialog, "Warning", "No row selected!");
         }
     });
-
 
     QPushButton *saveButton = new QPushButton("Save Changes", &updateDialog);
     QObject::connect(saveButton, &QPushButton::clicked, [&]() {
@@ -158,6 +227,12 @@ void manage_inventory::on_tableWidget_cellActivated(int row, int column)
 {
     if (ui->tableWidget->item(row, column)) {
         QString value = ui->tableWidget->item(row, column)->text();
+
+
+        if (column == 2 && value.contains(" - Low stock please update")) {
+            value = value.split(" - ").first();
+        }
+
         QMessageBox::information(this, "Cell Activated", "You clicked on: " + value);
     }
 }
@@ -174,7 +249,13 @@ void manage_inventory::applyFilter()
         for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
             QTableWidgetItem *item = ui->tableWidget->item(row, col);
             if (item) {
-                rowItems << item->text();
+                QString cellText = item->text();
+
+                if (col == 2 && cellText.contains(" - Low stock please update")) {
+                    cellText = cellText.split(" - ").first();
+                }
+
+                rowItems << cellText;
                 rowHasData = true;
             } else {
                 rowItems << "";
@@ -185,7 +266,6 @@ void manage_inventory::applyFilter()
             items << rowItems;
         }
     }
-
 
     switch (option) {
     case 0:
