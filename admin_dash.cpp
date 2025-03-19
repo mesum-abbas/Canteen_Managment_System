@@ -8,7 +8,6 @@ admin_dash::admin_dash(QWidget *parent)
     ui->setupUi(this);
     ptrmanageinventory = new manage_inventory();
     ptrgeneratereport = new gen_report();
-
     ptrlogout = new logout();
 
 }
@@ -35,8 +34,6 @@ void admin_dash::on_pushButton_4_clicked()
 {
     ptrgeneratereport->show();
 }
-
-
 
 
 void admin_dash::on_pushButton_6_clicked()

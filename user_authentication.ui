@@ -46,7 +46,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(0, 229, 255);
+background-color: rgb(255, 191, 60);
 color: rgb(46, 46, 46);
 font: 12pt &quot;Segoe UI&quot;;</string>
     </property>
@@ -63,6 +63,10 @@ font: 12pt &quot;Segoe UI&quot;;</string>
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(13, 13, 13);
+border-bottom-color: rgb(12, 12, 12);</string>
+    </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
@@ -72,6 +76,9 @@ font: 12pt &quot;Segoe UI&quot;;</string>
       <width>281</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(13, 13, 13);</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -137,6 +144,22 @@ font: 12pt &quot;Segoe UI&quot;;</string>
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;USER LOGIN&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>10</y>
+     <width>401</width>
+     <height>621</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/pre/smart_canteen_logo_transparent.png);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
   </widget>
  </widget>
  <resources/>

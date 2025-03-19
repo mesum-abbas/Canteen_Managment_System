@@ -20,10 +20,13 @@
    <property name="geometry">
     <rect>
      <x>390</x>
-     <y>20</y>
+     <y>30</y>
      <width>271</width>
      <height>61</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(245, 245, 220);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:28pt; font-weight:700;&quot;&gt;PLACE ORDER&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -33,7 +36,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>130</y>
+     <y>150</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -46,7 +49,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>180</y>
+     <y>200</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -58,8 +61,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>550</x>
-     <y>180</y>
+     <x>560</x>
+     <y>200</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -72,7 +75,7 @@
    <property name="geometry">
     <rect>
      <x>330</x>
-     <y>180</y>
+     <y>200</y>
      <width>71</width>
      <height>31</height>
     </rect>
@@ -85,7 +88,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>310</y>
+     <y>330</y>
      <width>91</width>
      <height>41</height>
     </rect>
@@ -98,7 +101,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>540</y>
+     <y>550</y>
      <width>141</width>
      <height>31</height>
     </rect>
@@ -111,7 +114,7 @@
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>600</y>
+     <y>610</y>
      <width>181</width>
      <height>41</height>
     </rect>
@@ -119,7 +122,7 @@
    <property name="styleSheet">
     <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(0, 229, 255);
+background-color: rgb(255, 191, 60);
 color: rgb(46, 46, 46);</string>
    </property>
    <property name="text">
@@ -130,7 +133,7 @@ color: rgb(46, 46, 46);</string>
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>600</y>
+     <y>610</y>
      <width>181</width>
      <height>41</height>
     </rect>
@@ -138,7 +141,7 @@ color: rgb(46, 46, 46);</string>
    <property name="styleSheet">
     <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(0, 229, 255);
+background-color: rgb(255, 191, 60);
 color: rgb(46, 46, 46);</string>
    </property>
    <property name="text">
@@ -157,7 +160,7 @@ color: rgb(46, 46, 46);</string>
    <property name="styleSheet">
     <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(0, 229, 255);
+background-color: rgb(255, 191, 60);
 color: rgb(46, 46, 46);;</string>
    </property>
    <property name="text">
@@ -168,13 +171,15 @@ color: rgb(46, 46, 46);;</string>
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>240</y>
+     <y>270</y>
      <width>181</width>
      <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Segoe UI&quot;;</string>
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color: rgb(12, 12, 12);
+background-color: rgb(255, 191, 60);</string>
    </property>
    <property name="text">
     <string>ADD TO CART</string>
@@ -184,7 +189,7 @@ color: rgb(46, 46, 46);;</string>
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>130</y>
+     <y>150</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -194,7 +199,7 @@ color: rgb(46, 46, 46);;</string>
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>180</y>
+     <y>200</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -203,8 +208,8 @@ color: rgb(46, 46, 46);;</string>
   <widget class="QLineEdit" name="lineEdit_2">
    <property name="geometry">
     <rect>
-     <x>660</x>
-     <y>180</y>
+     <x>670</x>
+     <y>200</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -214,7 +219,7 @@ color: rgb(46, 46, 46);;</string>
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>180</y>
+     <y>200</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -224,7 +229,7 @@ color: rgb(46, 46, 46);;</string>
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>540</y>
+     <y>550</y>
      <width>121</width>
      <height>31</height>
     </rect>
@@ -234,7 +239,7 @@ color: rgb(46, 46, 46);;</string>
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>360</y>
+     <y>380</y>
      <width>421</width>
      <height>151</height>
     </rect>
@@ -272,13 +277,29 @@ color: rgb(46, 46, 46);;</string>
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>100</y>
+     <y>110</y>
      <width>541</width>
      <height>20</height>
     </rect>
    </property>
    <property name="orientation">
     <enum>Qt::Orientation::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>181</width>
+     <height>121</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/pre/smart_canteen_logo_transparent.png);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

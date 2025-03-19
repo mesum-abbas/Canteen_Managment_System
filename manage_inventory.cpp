@@ -18,7 +18,7 @@ manage_inventory::manage_inventory(QWidget *parent)
 {
     ui->setupUi(this);
 
-    this->resize(800, 600);
+    this->resize(1000, 700);
     ui->tableWidget->setGeometry(20, 70, width() * 0.85, height() * 0.75);
 
     ui->tableWidget->setColumnCount(3);

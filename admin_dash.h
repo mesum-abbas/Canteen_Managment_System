@@ -4,7 +4,6 @@
 #include <QDialog>
 #include"manage_inventory.h"
 #include"gen_report.h"
-
 #include"logout.h"
 
 namespace Ui {
@@ -24,7 +23,6 @@ private slots:
 
     void on_pushButton_4_clicked();
 
-    void on_pushButton_5_clicked();
 
     void on_pushButton_6_clicked();
 
@@ -32,7 +30,6 @@ private:
     Ui::admin_dash *ui;
     manage_inventory  *ptrmanageinventory;
     gen_report  *ptrgeneratereport;
-
     logout *ptrlogout;
 
 };

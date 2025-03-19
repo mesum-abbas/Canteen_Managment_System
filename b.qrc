@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/bb">
+        <file>back pic.jpg</file>
+    </qresource>
+</RCC>

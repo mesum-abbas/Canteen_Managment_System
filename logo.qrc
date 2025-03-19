@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/pre">
+        <file>smart_canteen_logo_transparent.png</file>
+    </qresource>
+</RCC>
