@@ -308,3 +308,8 @@ void manage_inventory::resizeEvent(QResizeEvent *event)
     filterComboBox->setGeometry(205, 20, 200, 25);
     filterButton->setGeometry(415, 20, 100, 25);
 }
+void manage_inventory::on_pushButton_2_clicked()
+{
+
+    this->close();
+}
