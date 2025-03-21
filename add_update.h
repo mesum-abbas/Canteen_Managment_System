@@ -15,6 +15,8 @@ public:
     explicit add_update(QWidget *parent = nullptr);
     ~add_update();
 
+private slots:
+    void onSubmit();
 private:
     Ui::add_update *ui;
 };
