@@ -1,9 +1,12 @@
 #include "manage_inventory.h"
 #include "ui_manage_inventory.h"
+#include "add_update.h"
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QSqlQuery>
+#include <QSqlError>
 #include <QHBoxLayout>
 #include <QComboBox>
 #include <QLabel>
@@ -25,12 +28,9 @@ manage_inventory::manage_inventory(QWidget *parent)
     QStringList headers = {"Item Name", "Price", "Stock"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
 
-
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Interactive);
     ui->tableWidget->setColumnWidth(2, 200);
-
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     titleLabel = new QLabel("Manage Inventory", this);
@@ -58,6 +58,8 @@ manage_inventory::manage_inventory(QWidget *parent)
     blinkTimer = new QTimer(this);
     connect(blinkTimer, &QTimer::timeout, this, &manage_inventory::updateBlinkEffect);
     blinkTimer->start(1000);
+
+    loadInventoryData();
 }
 
 manage_inventory::~manage_inventory()
@@ -67,7 +69,6 @@ manage_inventory::~manage_inventory()
     delete filterComboBox;
     delete filterButton;
     delete titleLabel;
-
 
     if (blinkTimer) {
         blinkTimer->stop();
@@ -120,46 +121,40 @@ void manage_inventory::updateBlinkEffect()
     }
 }
 
-void manage_inventory::on_pushButton_clicked()
+void manage_inventory::loadInventoryData()
 {
-    bool ok;
-    QString itemName = QInputDialog::getText(this, "Add Item", "Enter item name:", QLineEdit::Normal, "", &ok);
-    if (!ok || itemName.isEmpty()) return;
+    ui->tableWidget->setRowCount(0); // Clear table before loading
 
-    QString itemPrice = QInputDialog::getText(this, "Add Item", "Enter item price:", QLineEdit::Normal, "", &ok);
-    if (!ok || itemPrice.isEmpty()) return;
-
-    QString itemStock = QInputDialog::getText(this, "Add Item", "Enter item stock:", QLineEdit::Normal, "15", &ok);
-    if (!ok) return;
-    if (itemStock.isEmpty()) itemStock = "15";
-
-    int rowCount = ui->tableWidget->rowCount();
-    int emptyRow = -1;
-
-    for (int i = 0; i < rowCount; i++) {
-        if (!ui->tableWidget->item(i, 0) || ui->tableWidget->item(i, 0)->text().isEmpty()) {
-            emptyRow = i;
-            break;
-        }
+    QSqlQuery query("SELECT item_name, price, stock_quantity FROM Items");
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Database Error", "Failed to fetch inventory data: " + query.lastError().text());
+        return;
     }
 
-    int row = (emptyRow == -1) ? rowCount : emptyRow;
-    if (emptyRow == -1) {
+    int row = 0;
+    while (query.next()) {
         ui->tableWidget->insertRow(row);
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value(0).toString())); // Item Name
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(query.value(1).toDouble()))); // Price
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt()))); // Stock
+        row++;
     }
-
-    ui->tableWidget->setItem(row, 0, new QTableWidgetItem(itemName));
-    ui->tableWidget->setItem(row, 1, new QTableWidgetItem(itemPrice));
-    ui->tableWidget->setItem(row, 2, new QTableWidgetItem(itemStock));
-
-    QMessageBox::information(this, "Success", "Item added successfully!");
 }
 
+// Function to add a new item to the database
+void manage_inventory::on_pushButton_clicked()
+{
+    addUpdateWindow = new add_update(this);
+
+    addUpdateWindow->exec();
+
+    loadInventoryData();
+}
 void manage_inventory::on_pushButton_3_clicked()
 {
     QDialog updateDialog(this);
     updateDialog.setWindowTitle("Update Items");
-    updateDialog.resize(550, 450);
+    updateDialog.resize(600, 500);
 
     QVBoxLayout *layout = new QVBoxLayout(&updateDialog);
 
@@ -167,62 +162,87 @@ void manage_inventory::on_pushButton_3_clicked()
     updateTable->setColumnCount(3);
     updateTable->setHorizontalHeaderLabels({"Item Name", "Price", "Stock"});
     updateTable->setEditTriggers(QAbstractItemView::AllEditTriggers);
-
-
     updateTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    updateTable->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Interactive);
-    updateTable->setColumnWidth(2, 200); // Set a good width for the stock column
 
-    int rows = ui->tableWidget->rowCount();
-    updateTable->setRowCount(rows);
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < 3; j++) {
-            if (ui->tableWidget->item(i, j)) {
-                QString cellText = ui->tableWidget->item(i, j)->text();
+    QSqlQuery query("SELECT item_name, price, stock_quantity FROM Items");
+    int row = 0;
+    while (query.next()) {
+        updateTable->insertRow(row);
+        updateTable->setItem(row, 0, new QTableWidgetItem(query.value(0).toString())); // Item Name
+        updateTable->setItem(row, 1, new QTableWidgetItem(QString::number(query.value(1).toDouble()))); // Price
+        updateTable->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt()))); // Stock
 
-                if (j == 2 && cellText.contains(" - Low stock please update")) {
-                    cellText = cellText.split(" - ").first();
-                }
+        // Make item name non-editable
+        updateTable->item(row, 0)->setFlags(updateTable->item(row, 0)->flags() & ~Qt::ItemIsEditable);
 
-                updateTable->setItem(i, j, new QTableWidgetItem(cellText));
-            } else if (j == 2) {
-                updateTable->setItem(i, j, new QTableWidgetItem("15"));
-            }
-        }
+        row++;
     }
 
     QPushButton *deleteButton = new QPushButton("Delete Selected Row", &updateDialog);
+    QPushButton *editButton = new QPushButton("Edit Selected Row", &updateDialog);
+    QPushButton *saveButton = new QPushButton("Save Changes", &updateDialog);
+
+    QObject::connect(editButton, &QPushButton::clicked, [&]() {
+        int selectedRow = updateTable->currentRow();
+        if (selectedRow < 0) {
+            QMessageBox::warning(&updateDialog, "Warning", "No row selected!");
+            return;
+        }
+
+        QString itemName = updateTable->item(selectedRow, 0)->text();
+        bool ok;
+        double newPrice = QInputDialog::getDouble(&updateDialog, "Edit Price", "Enter new price:",
+                                                  updateTable->item(selectedRow, 1)->text().toDouble(), 0, 100000, 2, &ok);
+        if (!ok) return;
+
+        int newStock = QInputDialog::getInt(&updateDialog, "Edit Stock", "Enter new stock:",
+                                            updateTable->item(selectedRow, 2)->text().toInt(), 0, 100000, 1, &ok);
+        if (!ok) return;
+
+        updateTable->item(selectedRow, 1)->setText(QString::number(newPrice));
+        updateTable->item(selectedRow, 2)->setText(QString::number(newStock));
+    });
+
     QObject::connect(deleteButton, &QPushButton::clicked, [&]() {
         int selectedRow = updateTable->currentRow();
         if (selectedRow >= 0) {
+            QString itemName = updateTable->item(selectedRow, 0)->text();
+            QSqlQuery delQuery;
+            delQuery.prepare("DELETE FROM Items WHERE item_name = ?");
+            delQuery.addBindValue(itemName);
+            if (!delQuery.exec()) {
+                QMessageBox::critical(&updateDialog, "Database Error", "Failed to delete item: " + delQuery.lastError().text());
+                return;
+            }
             updateTable->removeRow(selectedRow);
         } else {
             QMessageBox::warning(&updateDialog, "Warning", "No row selected!");
         }
     });
 
-    QPushButton *saveButton = new QPushButton("Save Changes", &updateDialog);
     QObject::connect(saveButton, &QPushButton::clicked, [&]() {
-        int newRowCount = updateTable->rowCount();
-        ui->tableWidget->setRowCount(newRowCount);
-        for (int i = 0; i < newRowCount; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (updateTable->item(i, j)) {
-                    ui->tableWidget->setItem(i, j, new QTableWidgetItem(updateTable->item(i, j)->text()));
-                }
+        QSqlQuery updateQuery;
+        for (int i = 0; i < updateTable->rowCount(); i++) {
+            updateQuery.prepare("UPDATE Items SET price = ?, stock_quantity = ? WHERE item_name = ?");
+            updateQuery.addBindValue(updateTable->item(i, 1)->text().toDouble());
+            updateQuery.addBindValue(updateTable->item(i, 2)->text().toInt());
+            updateQuery.addBindValue(updateTable->item(i, 0)->text());
+            if (!updateQuery.exec()) {
+                QMessageBox::critical(&updateDialog, "Database Error", "Failed to update item: " + updateQuery.lastError().text());
             }
         }
         updateDialog.accept();
+        loadInventoryData();
     });
 
     layout->addWidget(updateTable);
+    layout->addWidget(editButton);
     layout->addWidget(deleteButton);
     layout->addWidget(saveButton);
     updateDialog.setLayout(layout);
 
     updateDialog.exec();
 }
-
 void manage_inventory::on_tableWidget_cellActivated(int row, int column)
 {
     if (ui->tableWidget->item(row, column)) {
@@ -310,6 +330,7 @@ void manage_inventory::resizeEvent(QResizeEvent *event)
 }
 void manage_inventory::on_pushButton_2_clicked()
 {
-
     this->close();
 }
+
+  
