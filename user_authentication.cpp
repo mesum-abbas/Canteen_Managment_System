@@ -39,8 +39,6 @@ void user_authentication::on_pushButton_2_clicked()
         QString role = query.value(1).toString();
 
         if (password == storedPassword) { // passwrord: cashier123
-            QMessageBox::information(this, "Login Successful", "Welcome, " + username + "!");
-            this->close();
             ptruser->show();
         } else {
             QMessageBox::warning(this, "Error", "Incorrect password.");
