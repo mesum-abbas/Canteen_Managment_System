@@ -259,65 +259,41 @@ void manage_inventory::on_tableWidget_cellActivated(int row, int column)
 
 void manage_inventory::applyFilter()
 {
+    QString queryStr = "SELECT item_name, price, stock_quantity FROM Items";
+
     int option = filterComboBox->currentIndex();
-
-    QList<QStringList> items;
-    for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
-        QStringList rowItems;
-        bool rowHasData = false;
-
-        for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
-            QTableWidgetItem *item = ui->tableWidget->item(row, col);
-            if (item) {
-                QString cellText = item->text();
-
-                if (col == 2 && cellText.contains(" - Low stock please update")) {
-                    cellText = cellText.split(" - ").first();
-                }
-
-                rowItems << cellText;
-                rowHasData = true;
-            } else {
-                rowItems << "";
-            }
-        }
-
-        if (rowHasData) {
-            items << rowItems;
-        }
-    }
-
     switch (option) {
     case 0:
-        std::sort(items.begin(), items.end(), [](const QStringList &a, const QStringList &b) {
-            return a[0].toLower() < b[0].toLower();
-        });
+        queryStr += " ORDER BY item_name ASC";
         break;
     case 1:
-        std::sort(items.begin(), items.end(), [](const QStringList &a, const QStringList &b) {
-            return a[0].toLower() > b[0].toLower();
-        });
+        queryStr += " ORDER BY item_name DESC";
         break;
     case 2:
-        std::sort(items.begin(), items.end(), [](const QStringList &a, const QStringList &b) {
-            return a[2].toInt() < b[2].toInt();
-        });
+        queryStr += " ORDER BY stock_quantity ASC";
         break;
     case 3:
-        std::sort(items.begin(), items.end(), [](const QStringList &a, const QStringList &b) {
-            return a[2].toInt() > b[2].toInt();
-        });
+        queryStr += " ORDER BY stock_quantity DESC";
         break;
     }
 
-    ui->tableWidget->setRowCount(items.size());
-    for (int row = 0; row < items.size(); ++row) {
-        for (int col = 0; col < items[row].size(); ++col) {
-            ui->tableWidget->setItem(row, col, new QTableWidgetItem(items[row][col]));
-        }
+    QSqlQuery query(queryStr);
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Database Error", "Failed to fetch sorted inventory data: " + query.lastError().text());
+        return;
+    }
+
+    ui->tableWidget->setRowCount(0); // Clear table before loading sorted data
+
+    int row = 0;
+    while (query.next()) {
+        ui->tableWidget->insertRow(row);
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value(0).toString())); 
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(query.value(1).toDouble()))); 
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt()))); 
+        row++;
     }
 }
-
 void manage_inventory::resizeEvent(QResizeEvent *event)
 {
     QDialog::resizeEvent(event);
