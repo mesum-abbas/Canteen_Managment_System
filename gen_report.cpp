@@ -18,4 +18,3 @@ void gen_report::on_pushButton_2_clicked()
 
     this->close();
 }
-

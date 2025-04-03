@@ -20,4 +20,3 @@ void user::on_pushButton_3_clicked()
 {
     ptrlogout1->show();
 }
-

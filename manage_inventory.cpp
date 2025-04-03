@@ -38,9 +38,11 @@ manage_inventory::manage_inventory(QWidget *parent)
     QFont titleFont = titleLabel->font();
     titleFont.setBold(true);
     titleLabel->setFont(titleFont);
+    titleLabel->setStyleSheet("color: white;");
 
     filterLabel = new QLabel("Sort by:", this);
     filterLabel->setGeometry(150, 20, 50, 25);
+    filterLabel->setStyleSheet("color: white;");
 
     filterComboBox = new QComboBox(this);
     filterComboBox->setGeometry(205, 20, 200, 25);
@@ -48,9 +50,11 @@ manage_inventory::manage_inventory(QWidget *parent)
     filterComboBox->addItem("Item Name (Descending)");
     filterComboBox->addItem("Stock (Ascending)");
     filterComboBox->addItem("Stock (Descending)");
+    filterComboBox->setStyleSheet("color: black; background-color: white;");
 
     filterButton = new QPushButton("Apply Filter", this);
     filterButton->setGeometry(415, 20, 100, 25);
+     filterButton->setStyleSheet("color: white; background-color: #2a82da;");
     connect(filterButton, &QPushButton::clicked, this, &manage_inventory::applyFilter);
 
     connect(ui->tableWidget, &QTableWidget::cellActivated, this, &manage_inventory::on_tableWidget_cellActivated);
@@ -58,6 +62,7 @@ manage_inventory::manage_inventory(QWidget *parent)
     blinkTimer = new QTimer(this);
     connect(blinkTimer, &QTimer::timeout, this, &manage_inventory::updateBlinkEffect);
     blinkTimer->start(1000);
+
 
     loadInventoryData();
 }
@@ -182,6 +187,12 @@ void manage_inventory::on_pushButton_3_clicked()
     QPushButton *editButton = new QPushButton("Edit Selected Row", &updateDialog);
     QPushButton *saveButton = new QPushButton("Save Changes", &updateDialog);
 
+    QString buttonStyle = "color: white; background-color: #2a82da;";
+    deleteButton->setStyleSheet(buttonStyle);
+    editButton->setStyleSheet(buttonStyle);
+    saveButton->setStyleSheet(buttonStyle);
+
+
     QObject::connect(editButton, &QPushButton::clicked, [&]() {
         int selectedRow = updateTable->currentRow();
         if (selectedRow < 0) {
@@ -288,9 +299,9 @@ void manage_inventory::applyFilter()
     int row = 0;
     while (query.next()) {
         ui->tableWidget->insertRow(row);
-        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value(0).toString())); 
-        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(query.value(1).toDouble()))); 
-        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt()))); 
+        ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
+        ui->tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(query.value(1).toDouble())));
+        ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt())));
         row++;
     }
 }
@@ -309,4 +320,3 @@ void manage_inventory::on_pushButton_2_clicked()
     this->close();
 }
 
-  
