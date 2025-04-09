@@ -318,7 +318,7 @@ void manage_inventory::applyFilter()
         return;
     }
 
-    ui->tableWidget->setRowCount(0); // Clear table before loading sorted data
+    ui->tableWidget->setRowCount(0);
 
     int row = 0;
     while (query.next()) {
@@ -327,12 +327,12 @@ void manage_inventory::applyFilter()
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(query.value(1).toDouble())));
         ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt())));
 
-        // Set default colors for all items after filtering
+
         for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
             QTableWidgetItem* item = ui->tableWidget->item(row, col);
             if (item) {
-                item->setForeground(Qt::black);
-                item->setBackground(Qt::white);
+                item->setForeground(Qt::white);
+                item->setBackground(Qt::black);
             }
         }
 
