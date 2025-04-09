@@ -54,15 +54,15 @@ manage_inventory::manage_inventory(QWidget *parent)
 
     filterButton = new QPushButton("Apply Filter", this);
     filterButton->setGeometry(415, 20, 100, 25);
-     filterButton->setStyleSheet("color: white; background-color: #2a82da;");
+    filterButton->setStyleSheet("color: white; background-color: #2a82da;");
     connect(filterButton, &QPushButton::clicked, this, &manage_inventory::applyFilter);
 
-    connect(ui->tableWidget, &QTableWidget::cellActivated, this, &manage_inventory::on_tableWidget_cellActivated);
+    // Removing the cell activated connection to eliminate the popup
+    // connect(ui->tableWidget, &QTableWidget::cellActivated, this, &manage_inventory::on_tableWidget_cellActivated);
 
     blinkTimer = new QTimer(this);
     connect(blinkTimer, &QTimer::timeout, this, &manage_inventory::updateBlinkEffect);
     blinkTimer->start(1000);
-
 
     loadInventoryData();
 }
@@ -83,9 +83,7 @@ manage_inventory::~manage_inventory()
 
 void manage_inventory::updateBlinkEffect()
 {
-
     blinkState = !blinkState;
-
 
     for (int row = 0; row < ui->tableWidget->rowCount(); ++row) {
         QTableWidgetItem* stockItem = ui->tableWidget->item(row, 2); // Stock column
@@ -95,25 +93,20 @@ void manage_inventory::updateBlinkEffect()
             int stock = stockItem->text().toInt(&ok);
 
             if (ok && stock < 10) {
-
                 for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
                     QTableWidgetItem* item = ui->tableWidget->item(row, col);
                     if (item) {
                         if (blinkState) {
-
                             QColor lightRed(255, 0, 0, 100);
                             item->setBackground(lightRed);
-                            item->setForeground(Qt::black);
-
+                            item->setForeground(Qt::white); // Change to white for better visibility on red background
 
                             if (col == 2) {
                                 item->setText(QString::number(stock) + " - Low stock please update");
                             }
                         } else {
-
                             item->setBackground(Qt::white);
                             item->setForeground(Qt::black);
-
 
                             if (col == 2) {
                                 item->setText(QString::number(stock));
@@ -142,19 +135,28 @@ void manage_inventory::loadInventoryData()
         ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value(0).toString())); // Item Name
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(query.value(1).toDouble()))); // Price
         ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt()))); // Stock
+
+        // Set default colors for all items
+        for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
+            QTableWidgetItem* item = ui->tableWidget->item(row, col);
+            if (item) {
+                item->setForeground(Qt::white); // Default text color
+                item->setBackground(Qt::black); // Default background
+            }
+        }
+
         row++;
     }
 }
 
-// Function to add a new item to the database
+
 void manage_inventory::on_pushButton_clicked()
 {
     addUpdateWindow = new add_update(this);
-
     addUpdateWindow->exec();
-
     loadInventoryData();
 }
+
 void manage_inventory::on_pushButton_3_clicked()
 {
     QDialog updateDialog(this);
@@ -169,6 +171,10 @@ void manage_inventory::on_pushButton_3_clicked()
     updateTable->setEditTriggers(QAbstractItemView::AllEditTriggers);
     updateTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    // Set the table's background and text colors for the update dialog
+    updateTable->setStyleSheet("QTableWidget { background-color: black; color: white; } "
+                               "QTableWidget::item { color: black; background-color: white; }");
+
     QSqlQuery query("SELECT item_name, price, stock_quantity FROM Items");
     int row = 0;
     while (query.next()) {
@@ -179,6 +185,15 @@ void manage_inventory::on_pushButton_3_clicked()
 
         // Make item name non-editable
         updateTable->item(row, 0)->setFlags(updateTable->item(row, 0)->flags() & ~Qt::ItemIsEditable);
+
+        // Ensure text is visible
+        for (int col = 0; col < updateTable->columnCount(); ++col) {
+            QTableWidgetItem* item = updateTable->item(row, col);
+            if (item) {
+                item->setForeground(Qt::white);
+                item->setBackground(Qt::black);
+            }
+        }
 
         row++;
     }
@@ -191,7 +206,6 @@ void manage_inventory::on_pushButton_3_clicked()
     deleteButton->setStyleSheet(buttonStyle);
     editButton->setStyleSheet(buttonStyle);
     saveButton->setStyleSheet(buttonStyle);
-
 
     QObject::connect(editButton, &QPushButton::clicked, [&]() {
         int selectedRow = updateTable->currentRow();
@@ -212,6 +226,10 @@ void manage_inventory::on_pushButton_3_clicked()
 
         updateTable->item(selectedRow, 1)->setText(QString::number(newPrice));
         updateTable->item(selectedRow, 2)->setText(QString::number(newStock));
+
+        // Ensure text remains visible after editing
+        updateTable->item(selectedRow, 1)->setForeground(Qt::black);
+        updateTable->item(selectedRow, 2)->setForeground(Qt::black);
     });
 
     QObject::connect(deleteButton, &QPushButton::clicked, [&]() {
@@ -253,18 +271,24 @@ void manage_inventory::on_pushButton_3_clicked()
     updateDialog.setLayout(layout);
 
     updateDialog.exec();
+
+    // Reset the blinking state to ensure proper colors
+    blinkState = false;
+    updateBlinkEffect();
 }
+
+// The cell activated function is still defined but not connected anymore
 void manage_inventory::on_tableWidget_cellActivated(int row, int column)
 {
     if (ui->tableWidget->item(row, column)) {
         QString value = ui->tableWidget->item(row, column)->text();
 
-
         if (column == 2 && value.contains(" - Low stock please update")) {
             value = value.split(" - ").first();
         }
 
-        QMessageBox::information(this, "Cell Activated", "You clicked on: " + value);
+        // We don't show this message anymore
+        // QMessageBox::information(this, "Cell Activated", "You clicked on: " + value);
     }
 }
 
@@ -302,9 +326,20 @@ void manage_inventory::applyFilter()
         ui->tableWidget->setItem(row, 0, new QTableWidgetItem(query.value(0).toString()));
         ui->tableWidget->setItem(row, 1, new QTableWidgetItem(QString::number(query.value(1).toDouble())));
         ui->tableWidget->setItem(row, 2, new QTableWidgetItem(QString::number(query.value(2).toInt())));
+
+        // Set default colors for all items after filtering
+        for (int col = 0; col < ui->tableWidget->columnCount(); ++col) {
+            QTableWidgetItem* item = ui->tableWidget->item(row, col);
+            if (item) {
+                item->setForeground(Qt::black);
+                item->setBackground(Qt::white);
+            }
+        }
+
         row++;
     }
 }
+
 void manage_inventory::resizeEvent(QResizeEvent *event)
 {
     QDialog::resizeEvent(event);
@@ -315,8 +350,8 @@ void manage_inventory::resizeEvent(QResizeEvent *event)
     filterComboBox->setGeometry(205, 20, 200, 25);
     filterButton->setGeometry(415, 20, 100, 25);
 }
+
 void manage_inventory::on_pushButton_2_clicked()
 {
     this->close();
 }
-
