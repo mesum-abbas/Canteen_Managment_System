@@ -120,10 +120,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(255, 191, 60);
-color: rgb(46, 46, 46);</string>
+    <string notr="true">font: 12pt "Segoe UI"; background-color: rgb(255, 191, 60); color: rgb(46, 46, 46);</string>
    </property>
    <property name="text">
     <string>CONFIRM ORDER</string>
@@ -139,10 +136,7 @@ color: rgb(46, 46, 46);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(255, 191, 60);
-color: rgb(46, 46, 46);</string>
+    <string notr="true">font: 12pt "Segoe UI"; background-color: rgb(255, 191, 60); color: rgb(46, 46, 46);</string>
    </property>
    <property name="text">
     <string>CANCEL</string>
@@ -158,10 +152,7 @@ color: rgb(46, 46, 46);</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-font: 12pt &quot;Segoe UI&quot;;
-background-color: rgb(255, 191, 60);
-color: rgb(46, 46, 46);;</string>
+    <string notr="true">font: 12pt "Segoe UI"; background-color: rgb(255, 191, 60); color: rgb(46, 46, 46);</string>
    </property>
    <property name="text">
     <string>LOGOUT</string>
@@ -177,9 +168,7 @@ color: rgb(46, 46, 46);;</string>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-color: rgb(12, 12, 12);
-background-color: rgb(255, 191, 60);</string>
+    <string notr="true">font: 12pt "Segoe UI"; color: rgb(12, 12, 12); background-color: rgb(255, 191, 60);</string>
    </property>
    <property name="text">
     <string>ADD TO CART</string>
@@ -235,43 +224,18 @@ background-color: rgb(255, 191, 60);</string>
     </rect>
    </property>
   </widget>
-  <widget class="QTableWidget" name="tableWidget">
+  <widget class="Line" name="line">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>380</y>
-     <width>421</width>
-     <height>151</height>
+     <x>240</x>
+     <y>110</y>
+     <width>541</width>
+     <height>20</height>
     </rect>
    </property>
-   <row>
-    <property name="text">
-     <string>3</string>
-    </property>
-   </row>
-   <row/>
-   <row/>
-   <row/>
-   <column>
-    <property name="text">
-     <string>ITEM NAME </string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>QUANTITY</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>NET PRICE</string>
-    </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>TOTAL PRICE</string>
-    </property>
-   </column>
+   <property name="orientation">
+    <enum>Qt::Orientation::Horizontal</enum>
+   </property>
   </widget>
   <widget class="QLabel" name="label_8">
    <property name="geometry">
