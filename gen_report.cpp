@@ -21,7 +21,7 @@ gen_report::gen_report(QWidget *parent)
     // Initialize DB connection
     if (!QSqlDatabase::contains("qt_sql_default_connection")) {
         db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName("your_database_name.db"); // <-- Set your actual DB path
+        db.setDatabaseName("inventory.db"); 
     } else {
         db = QSqlDatabase::database();
     }
