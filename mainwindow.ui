@@ -39,7 +39,9 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(245, 245, 220);</string>
+     <string notr="true">background-color: rgb(245, 245, 220);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Shape::StyledPanel</enum>
@@ -72,7 +74,9 @@ background-color: rgb(255, 191, 60);
 
 border-color: rgb(15, 15, 15);
 
-color: rgb(46, 46, 46);</string>
+color: rgb(46, 46, 46);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
      </property>
      <property name="text">
       <string>ADMIN</string>
@@ -102,7 +106,9 @@ color: rgb(46, 46, 46);</string>
       <string notr="true">border-color: rgb(15, 15, 15);
 font: 18pt &quot;Segoe UI&quot;;
 background-color: rgb(255, 191, 60);
-color: rgb(46, 46, 46);</string>
+color: rgb(46, 46, 46);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
      </property>
      <property name="text">
       <string>CASHIER</string>

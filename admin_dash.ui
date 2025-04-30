@@ -48,7 +48,9 @@ color: rgb(255, 255, 255);
     <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 font: 12pt &quot;Segoe UI&quot;;
 background-color: rgb(255, 191, 60);
-color: rgb(46, 46, 46);</string>
+color: rgb(46, 46, 46);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
    </property>
    <property name="text">
     <string>MANAGE INVENTORY</string>
@@ -68,7 +70,8 @@ color: rgb(46, 46, 46);</string>
 font: 12pt &quot;Segoe UI&quot;;
 background-color: rgb(255, 191, 60);
 color: rgb(46, 46, 46);
-</string>
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
    </property>
    <property name="text">
     <string>GENERATE REPORT</string>
@@ -87,7 +90,9 @@ color: rgb(46, 46, 46);
     <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 font: 12pt &quot;Segoe UI&quot;;
 background-color: rgb(255, 191, 60);
-color: rgb(46, 46, 46);</string>
+color: rgb(46, 46, 46);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
    </property>
    <property name="text">
     <string>LOG OUT </string>
