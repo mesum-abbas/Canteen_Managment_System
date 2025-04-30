@@ -2,6 +2,7 @@
 #define GEN_REPORT_H
 
 #include <QDialog>
+#include <QSqlDatabase>
 
 namespace Ui {
 class gen_report;
@@ -15,12 +16,13 @@ public:
     explicit gen_report(QWidget *parent = nullptr);
     ~gen_report();
 
-private:
-    Ui::gen_report *ui;
-
 private slots:
     void on_pushButton_2_clicked();
-};
+    void on_pushButton_clicked();
 
+private:
+    Ui::gen_report *ui;
+    QSqlDatabase db;
+};
 
 #endif // GEN_REPORT_H

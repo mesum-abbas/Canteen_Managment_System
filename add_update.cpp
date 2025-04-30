@@ -10,6 +10,19 @@ add_update::add_update(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // Set window background and text colors
+    this->setStyleSheet("QDialog { background-color: #333333; } QLabel { color: white; } QLineEdit { color: black; background-color: white; }");
+
+    // Add specific styling for the labels to make them more visible
+    ui->label->setStyleSheet("font-weight: bold; color: yellow; font-size: 18px;");
+    ui->label_2->setStyleSheet("font-weight: bold; color: yellow; font-size: 16px;");
+    ui->label_3->setStyleSheet("font-weight: bold; color: yellow; font-size: 16px;");
+    ui->label_4->setStyleSheet("font-weight: bold; color: yellow; font-size: 16px;");
+
+    // Style the buttons
+    ui->pushButton->setStyleSheet("background-color: #00BFFF; color: white; padding: 6px; border-radius: 4px;");
+    ui->pushButton_2->setStyleSheet("background-color: #00BFFF; color: white; padding: 6px; border-radius: 4px;");
+
     connect(ui->pushButton_2, &QPushButton::clicked, this, &add_update::onSubmit);
     connect(ui->pushButton, &QPushButton::clicked, this, &add_update::close);
 }
@@ -38,6 +51,7 @@ void add_update::onSubmit()
 
     if (query.exec()) {
         QMessageBox::information(this, "Success", "Item added successfully.");
+        this->close();
     } else {
         QMessageBox::critical(this, "Error", "Failed to update item: " + query.lastError().text());
     }
