@@ -120,6 +120,7 @@
     </rect>
    </property>
    <property name="styleSheet">
+<<<<<<< HEAD
     <string notr="true">
       QPushButton {
         font: 12pt "Segoe UI";
@@ -131,6 +132,12 @@
         background-color: rgb(255, 211, 100);
       }
     </string>
+=======
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(255, 191, 60);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
+>>>>>>> 1204be8a2bac439c5871341f10bac219ba568497
    </property>
    <property name="text">
     <string>CONFIRM ORDER</string>
@@ -146,6 +153,7 @@
     </rect>
    </property>
    <property name="styleSheet">
+<<<<<<< HEAD
     <string notr="true">
       QPushButton {
         font: 12pt "Segoe UI";
@@ -157,6 +165,12 @@
         background-color: rgb(255, 211, 100);
       }
     </string>
+=======
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(255, 191, 60);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
+>>>>>>> 1204be8a2bac439c5871341f10bac219ba568497
    </property>
    <property name="text">
     <string>CANCEL</string>
@@ -172,6 +186,7 @@
     </rect>
    </property>
    <property name="styleSheet">
+<<<<<<< HEAD
     <string notr="true">
       QPushButton {
         font: 12pt "Segoe UI";
@@ -183,6 +198,12 @@
         background-color: rgb(255, 211, 100);
       }
     </string>
+=======
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+background-color: rgb(255, 191, 60);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
+>>>>>>> 1204be8a2bac439c5871341f10bac219ba568497
    </property>
    <property name="text">
     <string>LOGOUT</string>
@@ -198,6 +219,7 @@
     </rect>
    </property>
    <property name="styleSheet">
+<<<<<<< HEAD
     <string notr="true">
       QPushButton {
         font: 12pt "Segoe UI";
@@ -209,6 +231,13 @@
         background-color: rgb(255, 211, 100);
       }
     </string>
+=======
+    <string notr="true">font: 12pt &quot;Segoe UI&quot;;
+color: rgb(12, 12, 12);
+background-color: rgb(255, 191, 60);
+color: rgb(46, 46, 46);
+border-radius:20px;</string>
+>>>>>>> 1204be8a2bac439c5871341f10bac219ba568497
    </property>
    <property name="text">
     <string>ADD TO CART</string>

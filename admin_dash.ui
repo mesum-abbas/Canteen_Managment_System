@@ -27,8 +27,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-color: rgb(255, 255, 255);
+    <string notr="true">
+color: rgb(245, 245, 220);
 </string>
    </property>
    <property name="text">

@@ -22,7 +22,8 @@ manage_inventory::manage_inventory(QWidget *parent)
     ui->setupUi(this);
 
     this->resize(1000, 700);
-    ui->tableWidget->setGeometry(20, 70, width() * 0.85, height() * 0.75);
+    // Move table down to avoid overlap with filter controls
+    ui->tableWidget->setGeometry(20, 130, width() * 0.85, height() * 0.75);
 
     ui->tableWidget->setColumnCount(3);
     QStringList headers = {"Item Name", "Price", "Stock"};
@@ -33,19 +34,23 @@ manage_inventory::manage_inventory(QWidget *parent)
     ui->tableWidget->setColumnWidth(2, 200);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    // Center the title and increase font size to 28
     titleLabel = new QLabel("Manage Inventory", this);
-    titleLabel->setGeometry(20, 20, 120, 25);
+    titleLabel->setGeometry(width()/2 - 200, 20, 400, 50);
+    titleLabel->setAlignment(Qt::AlignCenter);
     QFont titleFont = titleLabel->font();
     titleFont.setBold(true);
+    titleFont.setPointSize(28);
     titleLabel->setFont(titleFont);
-    titleLabel->setStyleSheet("color: white;");
+    titleLabel->setStyleSheet("color: rgb(245, 245, 220);");
 
+    // Move filter controls down for better visibility
     filterLabel = new QLabel("Sort by:", this);
-    filterLabel->setGeometry(150, 20, 50, 25);
+    filterLabel->setGeometry(150, 90, 50, 25);
     filterLabel->setStyleSheet("color: white;");
 
     filterComboBox = new QComboBox(this);
-    filterComboBox->setGeometry(205, 20, 200, 25);
+    filterComboBox->setGeometry(205, 90, 200, 25);
     filterComboBox->addItem("Item Name (Ascending)");
     filterComboBox->addItem("Item Name (Descending)");
     filterComboBox->addItem("Stock (Ascending)");
@@ -53,13 +58,22 @@ manage_inventory::manage_inventory(QWidget *parent)
     filterComboBox->setStyleSheet("color: black; background-color: white;");
 
     filterButton = new QPushButton("Apply Filter", this);
-    filterButton->setGeometry(415, 20, 100, 25);
-    filterButton->setStyleSheet("color: white; background-color: #2a82da;");
+    filterButton->setGeometry(415, 90, 100, 25);
+    filterButton->setStyleSheet("QPushButton { color: black; background-color: rgb(255, 191, 60); }"
+                                "QPushButton:hover { background-color: rgb(255, 215, 80); }");
     connect(filterButton, &QPushButton::clicked, this, &manage_inventory::applyFilter);
 
-    // Removing the cell activated connection to eliminate the popup
-    // connect(ui->tableWidget, &QTableWidget::cellActivated, this, &manage_inventory::on_tableWidget_cellActivated);
+    // Change button colors to yellow
+    ui->pushButton->setStyleSheet("QPushButton { color: black; background-color: rgb(255, 191, 60); }"
+                                  "QPushButton:hover { background-color: rgb(255, 215, 80); }");
 
+    ui->pushButton_2->setStyleSheet("QPushButton { color: black; background-color: rgb(255, 191, 60); }"
+                                    "QPushButton:hover { background-color: rgb(255, 215, 80); }");
+
+    ui->pushButton_3->setStyleSheet("QPushButton { color: black; background-color: rgb(255, 191, 60); }"
+                                    "QPushButton:hover { background-color: rgb(255, 215, 80); }");
+
+    // Original code
     blinkTimer = new QTimer(this);
     connect(blinkTimer, &QTimer::timeout, this, &manage_inventory::updateBlinkEffect);
     blinkTimer->start(1000);
@@ -202,7 +216,9 @@ void manage_inventory::on_pushButton_3_clicked()
     QPushButton *editButton = new QPushButton("Edit Selected Row", &updateDialog);
     QPushButton *saveButton = new QPushButton("Save Changes", &updateDialog);
 
-    QString buttonStyle = "color: white; background-color: #2a82da;";
+    // Update button style to use yellow color
+    QString buttonStyle = "QPushButton { color: black; background-color: rgb(255, 191, 60); }"
+                          "QPushButton:hover { background-color: rgb(255, 215, 80); }";
     deleteButton->setStyleSheet(buttonStyle);
     editButton->setStyleSheet(buttonStyle);
     saveButton->setStyleSheet(buttonStyle);
@@ -343,12 +359,16 @@ void manage_inventory::applyFilter()
 void manage_inventory::resizeEvent(QResizeEvent *event)
 {
     QDialog::resizeEvent(event);
-    ui->tableWidget->setGeometry(20, 70, width() * 0.85, height() * 0.75);
+    // Move table down in resize event too
+    ui->tableWidget->setGeometry(20, 130, width() * 0.85, height() * 0.75);
 
-    titleLabel->setGeometry(20, 20, 120, 25);
-    filterLabel->setGeometry(150, 20, 50, 25);
-    filterComboBox->setGeometry(205, 20, 200, 25);
-    filterButton->setGeometry(415, 20, 100, 25);
+    // Update title position when resizing
+    titleLabel->setGeometry(width()/2 - 200, 20, 400, 50);
+
+    // Update filter control positions when resizing
+    filterLabel->setGeometry(150, 90, 50, 25);
+    filterComboBox->setGeometry(205, 90, 200, 25);
+    filterButton->setGeometry(415, 90, 100, 25);
 }
 
 void manage_inventory::on_pushButton_2_clicked()

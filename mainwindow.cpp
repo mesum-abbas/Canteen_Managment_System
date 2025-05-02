@@ -9,6 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
     ptradminauthentication = new admin_authentication();
     ptruserauthentication = new user_authentication();
 
+    // Add hover effect to pushButton
+    ui->pushButton->setStyleSheet("QPushButton { color: black; background-color: rgb(255, 191, 60); }"
+                                  "QPushButton:hover { background-color: rgb(255, 215, 80); }");
+
+    // Add hover effect to pushButton_2
+    ui->pushButton_2->setStyleSheet("QPushButton { color: black; background-color: rgb(255, 191, 60); }"
+                                    "QPushButton:hover { background-color: rgb(255, 215, 80); }");
 }
 
 MainWindow::~MainWindow()

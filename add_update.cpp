@@ -19,9 +19,9 @@ add_update::add_update(QWidget *parent)
     ui->label_3->setStyleSheet("font-weight: bold; color: yellow; font-size: 16px;");
     ui->label_4->setStyleSheet("font-weight: bold; color: yellow; font-size: 16px;");
 
-    // Style the buttons
-    ui->pushButton->setStyleSheet("background-color: #00BFFF; color: white; padding: 6px; border-radius: 4px;");
-    ui->pushButton_2->setStyleSheet("background-color: #00BFFF; color: white; padding: 6px; border-radius: 4px;");
+    // Style the buttons - orange/yellow background, black text, larger font
+    ui->pushButton->setStyleSheet("background-color: rgb(255, 191, 60); color: black; padding: 6px; border-radius: 10px; font-size: 14px; font-weight: bold;");
+    ui->pushButton_2->setStyleSheet("background-color: rgb(255, 191, 60); color: black; padding: 6px; border-radius: 10px; font-size: 14px; font-weight: bold;");
 
     connect(ui->pushButton_2, &QPushButton::clicked, this, &add_update::onSubmit);
     connect(ui->pushButton, &QPushButton::clicked, this, &add_update::close);

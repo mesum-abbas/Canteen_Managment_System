@@ -90,7 +90,7 @@ border-bottom-color: rgb(12, 12, 12);</string>
      <rect>
       <x>80</x>
       <y>170</y>
-      <width>91</width>
+      <width>101</width>
       <height>21</height>
      </rect>
     </property>
@@ -103,7 +103,7 @@ border-bottom-color: rgb(12, 12, 12);</string>
      <string notr="true">color: rgb(49, 49, 49);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Username :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Username :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -111,7 +111,7 @@ border-bottom-color: rgb(12, 12, 12);</string>
      <rect>
       <x>80</x>
       <y>290</y>
-      <width>81</width>
+      <width>101</width>
       <height>21</height>
      </rect>
     </property>
@@ -124,7 +124,7 @@ border-bottom-color: rgb(12, 12, 12);</string>
      <string notr="true">color: rgb(49, 49, 49);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Password :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; font-weight:700;&quot;&gt;Password :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
