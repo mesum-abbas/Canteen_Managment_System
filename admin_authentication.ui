@@ -32,7 +32,8 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(245, 245, 220);</string>
+    <string notr="true">background-color: rgb(245, 245, 220);
+border-radius:40px;</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::Shape::StyledPanel</enum>
@@ -89,7 +90,8 @@ background-color:rgb(245, 150, 40);
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(13, 13, 13);</string>
+     <string notr="true">color: rgb(13, 13, 13);
+border-color: rgb(30, 28, 9);</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">

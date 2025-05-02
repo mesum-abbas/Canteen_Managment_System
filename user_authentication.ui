@@ -27,6 +27,9 @@
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(245, 245, 220);
+
+
+border-radius:40px;
 </string>
    </property>
    <property name="frameShape">
@@ -48,7 +51,8 @@
      <string notr="true">font: 12pt &quot;Segoe UI&quot;;
 background-color: rgb(255, 191, 60);
 color: rgb(46, 46, 46);
-font: 12pt &quot;Segoe UI&quot;;</string>
+font: 12pt &quot;Segoe UI&quot;;
+border-radius:20px;</string>
     </property>
     <property name="text">
      <string>LOGIN</string>
