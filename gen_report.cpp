@@ -46,6 +46,16 @@ gen_report::~gen_report()
 // Exit button
 void gen_report::on_pushButton_2_clicked()
 {
+    // Clean UI fields
+    ui->lineEdit->clear();
+    ui->lineEdit_2->clear();
+    ui->lineEdit_3->clear();
+
+    // Reset dates
+    QDate currentDate = QDate::currentDate();
+    ui->dateEdit->setDate(currentDate);
+    ui->dateEdit_2->setDate(currentDate);
+
     this->close();
 }
 // Generate report button
