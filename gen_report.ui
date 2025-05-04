@@ -80,6 +80,12 @@
      <height>41</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(60, 60, 60);
+border: 1px solid rgb(80, 80, 80);
+padding: 5px;</string>
+   </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_3">
    <property name="geometry">
@@ -89,6 +95,12 @@
      <width>341</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(60, 60, 60);
+border: 1px solid rgb(80, 80, 80);
+padding: 5px;</string>
    </property>
   </widget>
   <widget class="Line" name="line">
@@ -154,9 +166,7 @@
    </property>
    <property name="styleSheet">
     <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-font: 12pt &quot;Segoe UI&quot;;
 background-color: rgb(255, 191, 60);
-color: rgb(46, 46, 46);
 color: rgb(46, 46, 46);
 border-radius:20px;</string>
    </property>
@@ -175,9 +185,7 @@ border-radius:20px;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 12pt &quot;Segoe UI&quot;;
-font: 12pt &quot;Segoe UI&quot;;
 background-color: rgb(255, 191, 60);
-color: rgb(46, 46, 46);
 color: rgb(46, 46, 46);
 border-radius:15px;</string>
    </property>
@@ -194,6 +202,12 @@ border-radius:15px;</string>
      <height>31</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(60, 60, 60);
+border: 1px solid rgb(80, 80, 80);
+padding: 2px;</string>
+   </property>
   </widget>
   <widget class="QDateEdit" name="dateEdit_2">
    <property name="geometry">
@@ -203,6 +217,12 @@ border-radius:15px;</string>
      <width>121</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(60, 60, 60);
+border: 1px solid rgb(80, 80, 80);
+padding: 2px;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_8">
@@ -229,6 +249,12 @@ border-radius:15px;</string>
      <width>341</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(60, 60, 60);
+border: 1px solid rgb(80, 80, 80);
+padding: 5px;</string>
    </property>
   </widget>
  </widget>
