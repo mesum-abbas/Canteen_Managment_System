@@ -23,6 +23,10 @@ private slots:
 private:
     Ui::gen_report *ui;
     QSqlDatabase db;
+
+protected:
+    void closeEvent(QCloseEvent *event) override;
 };
 
 #endif // GEN_REPORT_H
+
