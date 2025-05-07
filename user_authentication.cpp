@@ -92,6 +92,8 @@ void user_authentication::on_pushButton_2_clicked()
         QString role = query.value(1).toString();
 
         if (password == storedPassword) {
+            ui->lineEdit->clear();
+            ui->lineEdit_2->clear();
             ptruser->show();
         } else {
             QMessageBox::warning(this, "Error", "Incorrect password.");
