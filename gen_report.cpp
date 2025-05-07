@@ -1,5 +1,6 @@
 #include "gen_report.h"
 #include "ui_gen_report.h"
+#include <QCloseEvent>
 #include <QMessageBox>
 #include <QDate>
 #include <QSqlDatabase>
@@ -42,6 +43,12 @@ gen_report::gen_report(QWidget *parent)
 gen_report::~gen_report()
 {
     delete ui;
+}
+void gen_report::closeEvent(QCloseEvent *event){
+    ui->lineEdit->clear();
+    ui->lineEdit_2->clear();
+    ui->lineEdit_3->clear();
+    QDialog::closeEvent(event);
 }
 // Exit button
 void gen_report::on_pushButton_2_clicked()
