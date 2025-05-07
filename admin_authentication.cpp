@@ -71,6 +71,8 @@ void admin_authentication::on_pushButton_2_clicked()
         QString storedPassword = query.value(0).toString();
 
         if (password == storedPassword) {
+            ui->lineEdit->clear();
+            ui->lineEdit_2->clear();
             ptradmindashboard->show();
             this->close();
         } else {
@@ -80,3 +82,4 @@ void admin_authentication::on_pushButton_2_clicked()
         QMessageBox::warning(this, "Error", "Wrong username or password");
     }
 }
+
